@@ -9,9 +9,15 @@ def grabData(url):
     data = urlopen(disguisedReq).read()
     return data
 
+
 htmldata = grabData("https://songmeanings.com/songs/view/3530822107858787765/")
 soup = BeautifulSoup(htmldata, "html.parser")
-rawHtml = soup.find("div", {"class": "holder lyric-box"})
-print(rawHtml.text)
+rawHtml = soup.get_text()
 
-
+for stringStrip in soup.stripped_strings:
+    if len(stringStrip) > 60:
+        pass
+    elif len(stringStrip) < 8:
+        pass
+    else:
+        print(repr(stringStrip))
